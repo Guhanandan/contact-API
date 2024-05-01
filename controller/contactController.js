@@ -26,6 +26,13 @@ const getContact = async (req,res)=>{
 
 const postContact = async (req,res)=>{
     try{
+        console.log("POST contacts")
+        const { name , email , phone} = req.body
+        if(!name || !email || !phone){
+            res.status(400)
+            throw new Error("All fields all Mandatory")
+        }
+
         const contact = await Contact.create(req.body)
         res.status(200).send(contact)
     }

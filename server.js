@@ -3,11 +3,13 @@ const express = require('express')
 const contactRouter = require('./routes/contactRoutes')
 const usersRouter = require('./routes/usersRoutes')
 const connectDB = require('./models/connectionDB')
+const errorHandler = require('./middleware/errorHandler')
 
 
 const app = express()
 
 app.use(express.json())
+app.use(errorHandler)
 app.use('/home',(req,res)=>{
     res.send("<h1>message for the server")
 })
